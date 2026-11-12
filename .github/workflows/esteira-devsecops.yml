@@ -123,6 +123,12 @@ jobs:
       - name: Verificar que a aplicacao importa sem erros
         working-directory: core-box
         run: python -c "import app"
+    # ========================================================
+    # ABUSE CASES
+    # ========================================================
+      - name: Executar testes de Abuse Cases
+        working-directory: core-box
+        run: pytest tests/test_abuse_cases.py -v
   # ============================================================
   # ESTACAO 4 - SCA (Trivy - dependencias)
   # Modo auditoria: CRITICAL/HIGH e MEDIUM/LOW sao reportados,
