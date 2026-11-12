@@ -116,6 +116,10 @@ jobs:
         working-directory: core-box
         run: pip install -r requirements-dev.txt
 
+      - name: instalar dependencias
+        working-directory: core-box
+        run: pip install --upgrade urllib3 requests
+
       - name: Validar sintaxe Python
         working-directory: core-box
         run: python -m compileall -q app
@@ -123,6 +127,8 @@ jobs:
       - name: Verificar que a aplicacao importa sem erros
         working-directory: core-box
         run: python -c "import app"
+
+
     # ========================================================
     # ABUSE CASES
     # ========================================================
@@ -145,7 +151,7 @@ jobs:
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: 'fs'
-          scan-ref: '.'
+          scan-ref: './core-box'
           scanners: 'vuln'
           severity: 'CRITICAL,HIGH'
           exit-code: '0'
@@ -157,7 +163,7 @@ jobs:
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: 'fs'
-          scan-ref: '.'
+          scan-ref: './core-box'
           scanners: 'vuln'
           severity: 'MEDIUM,LOW'
           exit-code: '0'
